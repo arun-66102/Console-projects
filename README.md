@@ -8,6 +8,7 @@
 - [Projects](#projects)
   - [1. ATM Machine](#1-atm-machine)
   - [2. Library Management System](#2-library-management-system)
+  - [3. Supermarket Management System](#3-supermarket-management-system)
 - [OOP Concepts Demonstrated](#oop-concepts-demonstrated)
 - [How to Run](#how-to-run)
 - [Tech Stack](#tech-stack)
@@ -206,15 +207,111 @@ Main Menu
 
 ---
 
+### 3. Supermarket Management System
+
+**Source:** [`SuperMarket.java`](SuperMarket.java)
+
+A console-based supermarket system where Admins manage product inventory and Customers can buy and return products.
+
+#### Features
+
+| Feature                 | Description                                               |
+| ----------------------- | --------------------------------------------------------- |
+| Admin Login             | PIN-based authentication                                  |
+| Add Product             | Add a new product or update quantity of existing product  |
+| Remove Product          | Remove a product by ID                                    |
+| View Products           | Display all products with ID, name, brand, and qty       |
+| Customer Login          | ID + PIN authentication                                   |
+| Buy Product             | Purchase a product (decrements qty, prevents duplicates)  |
+| Return Product          | Return a purchased product (increments qty)               |
+| My Purchased Products   | View list of products currently purchased                 |
+
+#### Class Structure
+
+```
+Product
+â”œâ”€â”€ id    : int
+â”œâ”€â”€ name  : String
+â”œâ”€â”€ brand : String
+â””â”€â”€ qty   : int
+
+Customer
+â”œâ”€â”€ id        : int
+â”œâ”€â”€ pin       : int
+â””â”€â”€ purchased : ArrayList<Integer>
+
+Admin
+â””â”€â”€ pin : static int
+
+SuperMarket
+â”œâ”€â”€ products[]  : Product[5]
+â”œâ”€â”€ customers[] : Customer[5]
+â”œâ”€â”€ main()
+â”œâ”€â”€ adminLogin()
+â”œâ”€â”€ customerLogin()
+â”œâ”€â”€ addProduct()
+â”œâ”€â”€ removeProduct()
+â”œâ”€â”€ viewProducts()
+â”œâ”€â”€ buyProduct()
+â”œâ”€â”€ returnProduct()
+â””â”€â”€ myProducts()
+```
+
+#### Default Credentials
+
+**Admin**
+
+| Field | Value  |
+| ----- | ------ |
+| PIN   | `1234` |
+
+**Customers**
+
+| Customer ID | PIN    |
+| ----------- | ------ |
+| 1           | `1111` |
+| 2           | `2222` |
+| 3           | `3333` |
+| 4           | `4444` |
+| 5           | `5555` |
+
+#### Pre-loaded Products
+
+| ID | Product Name | Brand       | Qty |
+| -- | ------------ | ----------- | --- |
+| 1  | Rice Bag     | Aashirvaad  | 10  |
+| 2  | Milk Packet  | Aavin       | 15  |
+| 3  | Shampoo      | Clinic Plus | 8   |
+| 4  | Biscuits     | Britannia   | 20  |
+| 5  | Detergent    | Surf Excel  | 6   |
+
+#### Menu Flow
+
+```
+Main Menu
+â”œâ”€â”€ 1. Admin Login
+â”‚   â”œâ”€â”€ 1. Add Product
+â”‚   â”œâ”€â”€ 2. Remove Product
+â”‚   â””â”€â”€ 3. View Products
+â”œâ”€â”€ 2. Customer Login
+â”‚   â”œâ”€â”€ 1. View Products
+â”‚   â”œâ”€â”€ 2. Buy Product
+â”‚   â”œâ”€â”€ 3. Return Product
+â”‚   â””â”€â”€ 4. My Purchased Products
+â””â”€â”€ 3. Exit
+```
+
+---
+
 ## OOP Concepts Demonstrated
 
 | Concept              | Where Used                                                                 |
 | -------------------- | -------------------------------------------------------------------------- |
-| **Class & Object**   | `User`, `Admin`, `Book`, `Student`, `Library`, `ATMmachine`                |
+| **Class & Object**   | `User`, `Admin`, `Book`, `Student`, `Product`, `Customer`, `Library`, `SuperMarket`, `ATMmachine` |
 | **Encapsulation**    | Data and behaviour grouped into meaningful classes                         |
 | **Abstraction**      | Separate methods for each operation (`getDeposit`, `borrowBook`, etc.)     |
 | **Static Members**   | Shared state — `atm_balance`, admin PINs, arrays, `Scanner`               |
-| **Composition**      | `Student` contains `ArrayList<Integer>` for borrowed books; `User` uses `Stack<String>` |
+| **Composition**      | `Student` contains `ArrayList<Integer>` for borrowed books; `Customer` contains `ArrayList<Integer>` for purchased products; `User` uses `Stack<String>` |
 
 ---
 
@@ -234,6 +331,13 @@ java ATMmachine
 ```bash
 javac Library.java
 java Library
+```
+
+### Supermarket Management System
+
+```bash
+javac SuperMarket.java
+java SuperMarket
 ```
 
 ---
