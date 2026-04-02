@@ -9,6 +9,7 @@
   - [1. ATM Machine](#1-atm-machine)
   - [2. Library Management System](#2-library-management-system)
   - [3. Supermarket Management System](#3-supermarket-management-system)
+  - [4. Vehicle Rental Management System](#4-vehicle-rental-management-system)
 - [OOP Concepts Demonstrated](#oop-concepts-demonstrated)
 - [How to Run](#how-to-run)
 - [Tech Stack](#tech-stack)
@@ -303,15 +304,111 @@ Main Menu
 
 ---
 
+### 4. Vehicle Rental Management System
+
+**Source:** [`VehicleRental.java`](VehicleRental.java)
+
+A console-based vehicle rental system where Admins manage vehicles and Renters can rent and return vehicles.
+
+#### Features
+
+| Feature              | Description                                              |
+| -------------------- | -------------------------------------------------------- |
+| Admin Login          | PIN-based authentication                                 |
+| Add Vehicle          | Add a new vehicle or update quantity of existing vehicle |
+| Remove Vehicle       | Remove a vehicle by ID                                   |
+| View Vehicles        | Display all vehicles with ID, name, type, and qty       |
+| Renter Login         | ID + PIN authentication                                  |
+| Rent Vehicle         | Rent a vehicle (decrements qty, prevents duplicates)     |
+| Return Vehicle       | Return a rented vehicle (increments qty)                 |
+| My Rented Vehicles   | View list of vehicles currently rented                   |
+
+#### Class Structure
+
+```
+Vehicle
+â”œâ”€â”€ id   : int
+â”œâ”€â”€ name : String
+â”œâ”€â”€ type : String
+â””â”€â”€ qty  : int
+
+Renter
+â”œâ”€â”€ id     : int
+â”œâ”€â”€ pin    : int
+â””â”€â”€ rented : ArrayList<Integer>
+
+AdminVehicle
+â””â”€â”€ pin : static int
+
+VehicleRental
+â”œâ”€â”€ vehicles[] : Vehicle[5]
+â”œâ”€â”€ renters[]  : Renter[5]
+â”œâ”€â”€ main()
+â”œâ”€â”€ adminLogin()
+â”œâ”€â”€ renterLogin()
+â”œâ”€â”€ addVehicle()
+â”œâ”€â”€ removeVehicle()
+â”œâ”€â”€ viewVehicles()
+â”œâ”€â”€ rentVehicle()
+â”œâ”€â”€ returnVehicle()
+â””â”€â”€ myVehicles()
+```
+
+#### Default Credentials
+
+**Admin**
+
+| Field | Value  |
+| ----- | ------ |
+| PIN   | `1234` |
+
+**Renters**
+
+| Renter ID | PIN    |
+| --------- | ------ |
+| 1         | `1111` |
+| 2         | `2222` |
+| 3         | `3333` |
+| 4         | `4444` |
+| 5         | `5555` |
+
+#### Pre-loaded Vehicles
+
+| ID | Vehicle Name | Type    | Qty |
+| -- | ------------ | ------- | --- |
+| 1  | Activa       | Scooter | 4   |
+| 2  | Pulsar       | Bike    | 3   |
+| 3  | Swift        | Car     | 2   |
+| 4  | Innova       | Car     | 1   |
+| 5  | Access 125   | Scooter | 2   |
+
+#### Menu Flow
+
+```
+Main Menu
+â”œâ”€â”€ 1. Admin Login
+â”‚   â”œâ”€â”€ 1. Add Vehicle
+â”‚   â”œâ”€â”€ 2. Remove Vehicle
+â”‚   â””â”€â”€ 3. View Vehicles
+â”œâ”€â”€ 2. Renter Login
+â”‚   â”œâ”€â”€ 1. View Vehicles
+â”‚   â”œâ”€â”€ 2. Rent Vehicle
+â”‚   â”œâ”€â”€ 3. Return Vehicle
+â”‚   â””â”€â”€ 4. My Rented Vehicles
+â””â”€â”€ 3. Exit
+```
+
+---
+
 ## OOP Concepts Demonstrated
 
 | Concept              | Where Used                                                                 |
 | -------------------- | -------------------------------------------------------------------------- |
-| **Class & Object**   | `User`, `Admin`, `Book`, `Student`, `Product`, `Customer`, `Library`, `SuperMarket`, `ATMmachine` |
+| **Class & Object**   | `User`, `Admin`, `Book`, `Student`, `Product`, `Customer`, `Vehicle`, `Renter`, `AdminVehicle`, `Library`, `SuperMarket`, `VehicleRental`, `ATMmachine` |
 | **Encapsulation**    | Data and behaviour grouped into meaningful classes                         |
 | **Abstraction**      | Separate methods for each operation (`getDeposit`, `borrowBook`, etc.)     |
 | **Static Members**   | Shared state — `atm_balance`, admin PINs, arrays, `Scanner`               |
-| **Composition**      | `Student` contains `ArrayList<Integer>` for borrowed books; `Customer` contains `ArrayList<Integer>` for purchased products; `User` uses `Stack<String>` |
+| **Composition**      | `Student` contains `ArrayList<Integer>` for borrowed books; `Customer` contains `ArrayList<Integer>` for purchased products; `Renter` contains `ArrayList<Integer>` for rented vehicles; `User` uses `Stack<String>` |
 
 ---
 
@@ -338,6 +435,13 @@ java Library
 ```bash
 javac SuperMarket.java
 java SuperMarket
+```
+
+### Vehicle Rental Management System
+
+```bash
+javac VehicleRental.java
+java VehicleRental
 ```
 
 ---
